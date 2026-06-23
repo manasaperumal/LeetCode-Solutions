@@ -1,0 +1,42 @@
+/*
+LeetCode 88 - Merge Sorted Array
+
+Topic: Arrays, Two Pointers
+
+Problem:
+You are given two sorted integer arrays nums1 and nums2,
+and two integers m and n representing the number of valid
+elements in nums1 and nums2 respectively.
+
+Merge nums2 into nums1 as one sorted array. The final
+sorted array should be stored inside nums1.
+
+Approach:
+1. Use three pointers:
+   - p1 points to the last valid element of nums1.
+   - p2 points to the last element of nums2.
+   - i points to the last position of nums1.
+2. Compare nums1[p1] and nums2[p2].
+3. Place the larger element at nums1[i].
+4. Move the corresponding pointers backward.
+5. Continue until all elements of nums2 are merged.
+
+Time Complexity: O(m + n)
+Space Complexity: O(1)
+*/
+
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int p1 = m - 1;
+        int p2 = n - 1;
+        int i = m + n - 1;
+
+        while (p2 >= 0) {
+            if (p1 >= 0 && nums1[p1] > nums2[p2]) {
+                nums1[i--] = nums1[p1--];
+            } else {
+                nums1[i--] = nums2[p2--];
+            }
+        }
+    }
+}
